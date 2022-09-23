@@ -1,10 +1,13 @@
 #!/bin/bash
 
-CAMINHO_IMAGENS=~/Documentos/imagens-livros
+cd ~/Documentos/imagens-livros
 
-for imagem in $@
+for imagem in *.jpg
 do
-  convert $CAMINHO_IMAGENS/$imagem.jpg $CAMINHO_IMAGENS/$imagem.png
+  echo 'Converting '$imagem
+   imagem_sem_extensao=$(ls $imagem | awk -F. '{print $1}')
+   convert $imagem_sem_extensao.jpg $imagem_sem_extensao.png
 done
 
 
+ 
