@@ -1,3 +1,10 @@
 #!/bin/bash
 
-convert ~/Documentos/imagens-livros/amazon_aws.jpg  ~/Documentos/imagens-livros/amazon_aws.png
+CAMINHO_IMAGENS=~/Documentos/imagens-livros
+
+for imagem in $@
+do
+  convert $CAMINHO_IMAGENS/$imagem.jpg $CAMINHO_IMAGENS/$imagem.png
+done
+
+
