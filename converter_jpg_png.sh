@@ -1,19 +1,28 @@
 #!/bin/bash
 
-cd ~/Documentos/imagens-livros
+converte_imagem(){
+    cd ~/Documentos/imagens-livros
+    # -d e diretorio, se nao existe cria
+    if [ ! -d png ]
+    then
+        mkdir png
+    fi
 
-# -d e diretorio, se nao existe cria
-if [ ! -d png ]
+    for imagem in *.jpg
+    do
+        echo "Converting " $imagem
+        imagem_sem_extensao=$(ls $imagem | awk -F. '{ print $1 }')
+        convert $imagem_sem_extensao.jpg png/$imagem_sem_extensao.png
+    done
+}
+
+converte_imagem 2>erros_conversao.txt # 2>err... caso o retorno for maior que zero, grava os erros em um arquivo
+
+echo $?
+
+if [ $? -eq 0 ]
 then
-    mkdir png
+    echo "Conversão realizada com sucesso"
+else
+    echo "Houve uma falha no processo"
 fi
-
-for imagem in *.jpg
-do
-    echo 'Converting '$imagem
-    imagem_sem_extensao=$(ls $imagem | awk -F. '{ print $1 }')
-    convert $imagem_sem_extensao.jpg png/$imagem_sem_extensao.png
-done
-
- 
- 
