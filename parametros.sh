@@ -10,6 +10,7 @@ echo "O script $0 recebeu $# parametros"
  
 echo ""
  
+ 
 echo "Parametro \$1 = $1"
 echo "Parametro \$2 = $2"
 #...
